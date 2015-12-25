@@ -1,7 +1,6 @@
 module Lib
-    ( it
+    ( addTo
     ) where
 
-it :: Num n => [a] -> n
-it [] = 0
-it (a:as) = 1 + it as
+addTo :: (Int,Int) -> (Int,Int)
+addTo (c,o) = (c+1,o)

@@ -4,10 +4,8 @@ import Lib
 main :: IO ()
 main = do
   putStrLn ""
-  quickCheck itComputesTheLength
+  quickCheck addToIncreasesCount
   putStrLn ""
 
-
-
-itComputesTheLength :: [Char] -> Bool
-itComputesTheLength as = length as == it as
+addToIncreasesCount :: (Int,Int) -> Bool
+addToIncreasesCount v@(c,o) = addTo v == (c+1,o)
