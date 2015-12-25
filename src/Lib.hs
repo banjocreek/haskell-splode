@@ -1,6 +1,7 @@
 module Lib
-    ( someFunc
+    ( it
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+it :: Num n => [a] -> n
+it [] = 0
+it (a:as) = 1 + it as
