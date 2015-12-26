@@ -1,6 +1,10 @@
 module Lib
-    ( addTo
+    ( place
+    , Cell (Cell)
     ) where
 
-addTo :: (Int,Int) -> (Int,Int)
-addTo (c,o) = (c+1,o)
+
+data Cell = Cell Int [Cell] deriving (Show, Eq)
+
+place :: Cell -> Cell
+place (Cell x cs) = Cell (x+1) cs

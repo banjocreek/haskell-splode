@@ -4,8 +4,8 @@ import Lib
 main :: IO ()
 main = do
   putStrLn ""
-  quickCheck addToIncreasesCount
+  quickCheck placeIncrementsCount
   putStrLn ""
 
-addToIncreasesCount :: (Int,Int) -> Bool
-addToIncreasesCount v@(c,o) = addTo v == (c+1,o)
+placeIncrementsCount :: Int -> Bool
+placeIncrementsCount n = place (Cell n [1,2,3]) == Cell (n+1) [1,2,3]
