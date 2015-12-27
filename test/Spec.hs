@@ -3,6 +3,7 @@ import Test.QuickCheck
 import Position
 import qualified Square
 import qualified Hex
+import Game
 
 main :: IO ()
 main = hspec $ do
@@ -36,6 +37,10 @@ main = hspec $ do
       ns `shouldHaveOne` Hex.cell 1 2
     it "has a neighbor to the lower left" $ do
       ns `shouldHaveOne` Hex.cell 0 1
+  describe "new game" $ do
+    let g = Game.new :: Frame (Square.Cell Integer)
+    it "has no occupied positions" $ do
+      occupied g `shouldBe` []
 
 shouldHaveOne :: Eq a => [a] -> a -> Expectation
 shouldHaveOne ys x = case len of

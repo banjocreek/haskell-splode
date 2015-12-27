@@ -1,5 +1,6 @@
 module Square (
     cell
+  , Cell
 ) where
 
 import Position
