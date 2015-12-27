@@ -37,4 +37,9 @@ main = hspec $ do
     it "has a neighbor to the lower left" $ do
       ns `shouldHaveOne` Hex.cell 0 1
 
-shouldHaveOne ys x = filter (== x) ys == [x]
+shouldHaveOne :: Eq a => [a] -> a -> Expectation
+shouldHaveOne ys x = case len of
+                        1 -> return ()
+                        0 -> expectationFailure "not found"
+                        otherwise -> expectationFailure "more than one found"
+                      where len = length $ filter (== x) ys
