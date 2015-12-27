@@ -4,20 +4,20 @@ module Hex (
 
 import Position
 
-newtype SquareCell a = SquareCell (a,a) deriving Eq
+newtype Cell a = Cell (a,a) deriving Eq
 
-cell :: a -> a -> SquareCell a
-cell x y = SquareCell (x,y)
+cell :: a -> a -> Cell a
+cell x y = Cell (x,y)
 
-instance Show a => Show (SquareCell a) where
-  show (SquareCell c) = show c
+instance Show a => Show (Cell a) where
+  show (Cell c) = show c
 
-instance Enum i => Position (SquareCell i) where
+instance Enum i => Position (Cell i) where
   neighbors c = [left, uleft, uright, right, lright, lleft] <*> [c]
     where
-      left (SquareCell (x, y)) = cell (pred x) (pred y)
-      uleft (SquareCell (x, y)) = cell x (pred y)
-      uright (SquareCell (x, y)) = cell (succ x) y
-      right (SquareCell (x, y)) = cell (succ x) (succ y)
-      lright (SquareCell (x, y)) = cell x (succ y)
-      lleft (SquareCell (x, y)) = cell (pred x) y
+      left (Cell (x, y)) = cell (pred x) (pred y)
+      uleft (Cell (x, y)) = cell x (pred y)
+      uright (Cell (x, y)) = cell (succ x) y
+      right (Cell (x, y)) = cell (succ x) (succ y)
+      lright (Cell (x, y)) = cell x (succ y)
+      lleft (Cell (x, y)) = cell (pred x) y
