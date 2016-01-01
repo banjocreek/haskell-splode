@@ -41,6 +41,19 @@ main = hspec $ do
     let g = Game.new :: Frame (Square.Cell Integer)
     it "has no occupied positions" $ do
       occupied g `shouldBe` []
+  describe "place" $ do
+    let g = Game.new :: Frame (Square.Cell Integer)
+    it "causes an unoccupied position to become occupied" $ do
+      let next = place g $ Square.cell 1 1
+          os@((p,o):_) = occupied next
+      length os `shouldBe` 1
+      p `shouldBe` Square.cell 1 1
+      strength o `shouldBe` 1
+      let next' = place next $ Square.cell 3 7
+          os' = occupied next'
+      length os' `shouldBe` 2
+      os' `shouldHaveOne` (Square.cell 1 1, 1)
+      os' `shouldHaveOne` (Square.cell 3 7, 1)
 
 shouldHaveOne :: Eq a => [a] -> a -> Expectation
 shouldHaveOne ys x = case len of

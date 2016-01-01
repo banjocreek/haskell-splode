@@ -1,17 +1,19 @@
 module Square (
-    cell
-  , Cell
+  unbounded,
+  bounded
 ) where
 
-import Position
+import Topology
 
-newtype Cell a = Cell (a,a) deriving Eq
+newtype Region a = Squares {nfilt :: (a,a) -> Bool}
 
-cell :: a -> a -> Cell a
-cell x y = Cell (x,y)
+unbounded :: Enum a => Region a
+unbounded = Squares $ const True
 
-instance Show a => Show (Cell a) where
-  show (Cell c) = show c
+bounded :: (Eq a,Enum a) => ((a,a) -> Bool) -> Region a
+bounded = Squares
+
+instance Enum a => Region a 
 
 instance Enum i => Position (Cell i) where
   neighbors c = [left, up, right, down] <*> [c]

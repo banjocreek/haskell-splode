@@ -2,9 +2,9 @@ module Hex (
     cell
 ) where
 
-import Position
+import Topology
 
-newtype Cell a = Cell (a,a) deriving Eq
+newtype Cell a = Cell (a,a) deriving (Eq, Ord)
 
 cell :: a -> a -> Cell a
 cell x y = Cell (x,y)
